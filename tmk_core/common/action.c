@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "action_util.h"
 #include "action.h"
 #include "wait.h"
+#include <print.h>
 
 #ifdef BACKLIGHT_ENABLE
 #    include "backlight.h"
@@ -57,6 +58,10 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
 #ifndef TAP_HOLD_CAPS_DELAY
 #    define TAP_HOLD_CAPS_DELAY 80
 #endif
+
+// an hook to preprocess all `keyevent_t` events. Only useful when dealing with raw key presses
+__attribute__((weak)) void pre_process_action_quantum(keyevent_t event) {}
+
 /** \brief Called to execute an action.
  *
  * FIXME: Needs documentation.
@@ -67,6 +72,7 @@ void action_exec(keyevent_t event) {
         dprint("EVENT: ");
         debug_event(event);
         dprintln();
+        pre_process_action_quantum(event);
 #ifdef RETRO_TAPPING
         retro_tapping_counter++;
 #endif
@@ -153,6 +159,8 @@ void process_record_nocache(keyrecord_t *record) {
 #else
 void process_record_nocache(keyrecord_t *record) { process_record(record); }
 #endif
+
+__attribute__((weak)) void pre_process_record_quantum(keyrecord_t *record) {}
 
 __attribute__((weak)) bool process_record_quantum(keyrecord_t *record) { return true; }
 

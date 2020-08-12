@@ -16,6 +16,7 @@
 
 #include <ctype.h>
 #include "quantum.h"
+#include <print.h>
 
 #ifdef PROTOCOL_LUFA
 #    include "outputselect.h"

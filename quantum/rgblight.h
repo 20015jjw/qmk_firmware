@@ -80,6 +80,7 @@
 #    define RGBLIGHT_EFFECT_RGB_TEST
 #    define RGBLIGHT_EFFECT_ALTERNATING
 #    define RGBLIGHT_EFFECT_TWINKLE
+#    define RGBLIGHT_EFFECT_REACTIVE
 #endif
 
 #ifdef RGBLIGHT_STATIC_PATTERNS
@@ -97,7 +98,8 @@
   || defined(RGBLIGHT_EFFECT_CHRISTMAS)     \
   || defined(RGBLIGHT_EFFECT_RGB_TEST)      \
   || defined(RGBLIGHT_EFFECT_ALTERNATING)   \
-  || defined(RGBLIGHT_EFFECT_TWINKLE)
+  || defined(RGBLIGHT_EFFECT_TWINKLE)       \
+  || defined(RGBLIGHT_EFFECT_REACTIVE)
 #    define RGBLIGHT_USE_TIMER
 #endif
 
@@ -238,6 +240,7 @@ extern const uint8_t  RGBLED_SNAKE_INTERVALS[3] PROGMEM;
 extern const uint8_t  RGBLED_KNIGHT_INTERVALS[3] PROGMEM;
 extern const uint16_t RGBLED_RGBTEST_INTERVALS[1] PROGMEM;
 extern const uint8_t  RGBLED_TWINKLE_INTERVALS[3] PROGMEM;
+extern const uint8_t  RGBLED_REACTIVE_INTERVALS[3] PROGMEM;
 extern bool           is_rgblight_initialized;
 
 // Should stay in sycn with rgb matrix config as we reuse eeprom storage for both (for now)
@@ -431,6 +434,7 @@ void rgblight_effect_christmas(animation_status_t *anim);
 void rgblight_effect_rgbtest(animation_status_t *anim);
 void rgblight_effect_alternating(animation_status_t *anim);
 void rgblight_effect_twinkle(animation_status_t *anim);
+void rgblight_effect_reactive(animation_status_t *anim);
 
 #    endif
 
